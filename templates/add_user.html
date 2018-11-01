@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block body %}
+<h2>Register</h2>
+{% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
+<form action="{{ url_for('add_u') }}" method=post>
+<dl>
+<dt>name:<input type=text name=username>
+<dt>pass:<input type=password name=password>
+<dt>email:<input type=text name=email>
+<dt>items:
+{% for item in items %}
+<input type=checkbox name=item value={{ item.ids }}>{{ item.item }}
+{% endfor %}
+<dd><input type=submit name=userniu value=Adduser>   <input type=submit name=userniu value=Upduser>
+</dl>
+</form>
+{{ ck }}
+{{ u }}{{ p }}{{ e }}
+{% endblock %}
+

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<h2>Add Item</h2>
+<form action="{{ url_for('add_item') }}" method=post class=add-item>
+<dl>
+<dt><h2>Item:</h2>
+<dd><input type=text size=30 name=item>
+<dd><input type=submit value=Add>
+</dl>
+</form>
+</dl>
+</form>
+{% endif %}
+<ul class=entries>
+{% for ite in items %}
+<h4>
+<form action="{{ url_for('del_item') }}" method=post>
+    <input type=text size=2 name='item_ids' value="{{ ite.ids }}" readonly="readonly" />
+    <input type=text name='item_zhi' value="{{ ite.item|safe }}">
+    <input name="anniu" type=submit value=Delete>
+    <input name="anniu" type=submit value=Update>
+</h4>
+</form>
+{% else %}
+<li><em>Unbelievable. No item here so far</em>
+{% endfor %}
+</ul>
+{{ zhi }}
+{% endblock %}

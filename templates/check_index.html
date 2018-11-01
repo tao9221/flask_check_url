@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<h2>Check url</h2>
+<form action="{{ url_for('show_check') }}" method=post class=add-entry>
+<dl>
+<dt>item:
+<select name="item_only">
+{% for curl in items %}
+<option name="item_name" value={{ curl.ids }}>{{ curl.item }}</option>
+{% endfor %}
+</select>
+<dd><input type=submit value=Check>
+</dl>
+</form>
+
+{% for curl in itemurl %}
+<dl>
+{%if curl.split('|')[1][1:4] != "200" %}
+<div style="color:red">{{ curl }}</div>
+{% else %}
+<div style="color:green">{{ curl }}</div>
+{% endif %}
+{% else %}
+<li><em>No url for check!</em>
+</dl>
+{% endfor %}
+{% endif %}
+{% endblock %}
